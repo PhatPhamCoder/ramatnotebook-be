@@ -16,11 +16,8 @@ app.use("/api/user", authRouter);
 
 
 
-
-
 app.use(notFound);
 app.use(errorHandler);
-
 
 
 app.listen(PORT, () => {
