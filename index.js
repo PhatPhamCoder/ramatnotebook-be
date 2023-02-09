@@ -17,6 +17,9 @@ app.use(cookieParser());
 
 app.use("/api/user", authRouter);
 
+app.get("/api", (req, res) => {
+  res.json({ "users": ["userone", "usertwo"] })
+});
 app.use(notFound);
 app.use(errorHandler);
 
