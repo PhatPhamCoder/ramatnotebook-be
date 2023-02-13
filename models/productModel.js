@@ -31,11 +31,11 @@ var productSchema = new mongoose.Schema({
     },
     quantity: {
         type: Number,
-        required: true
+        required: true,
     },
     sold: {
         type: Number,
-        default: 0
+        default: 0,
     },
     images: {
         type: Array,
