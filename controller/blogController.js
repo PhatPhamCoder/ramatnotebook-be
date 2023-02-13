@@ -9,7 +9,7 @@ const createBlog = asyncHandler(async (req, res) => {
         const newBlog = await Blog.create(req.body);
         res.json(newBlog);
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
 });
 
@@ -21,7 +21,7 @@ const updateBlog = asyncHandler(async (req, res) => {
         });
         res.json(updateBlog);
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
 });
 
@@ -29,21 +29,23 @@ const getBlog = asyncHandler(async (req, res) => {
     const { id } = req.params;
     try {
         const getBlog = await Blog.findById(id);
-        const updateViews = await Blog.findByIdAndUpdate(id, {
-            $inc: { numViews: 1 }
-        },
+        const updateViews = await Blog.findByIdAndUpdate(
+            id,
+            {
+                $inc: { numViews: 1 }
+            },
             { new: true }
         );
         res.json(updateViews);
     } catch (error) {
-        throw new Error(error)
+        throw new Error(error);
     }
 });
 
-const getAllBlog = asyncHandler(async (req, res) => {
+const getAllBlogs = asyncHandler(async (req, res) => {
     try {
-        const getBlogs = await Blog.find();
-        res.json(getBlogs);
+        const getAllBlog = await Blog.find();
+        res.json(getAllBlog);
     } catch (error) {
         throw new Error(error)
     }
@@ -61,6 +63,6 @@ const deleteBlog = asyncHandler(async (req, res) => {
 
 module.exports = {
     createBlog, updateBlog,
-    getBlog, getAllBlog,
+    getBlog, getAllBlogs,
     deleteBlog
 }
