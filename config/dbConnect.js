@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose");
-mongoose.set('strictQuery', false);
+mongoose.set('strictQuery', true);
 const dbConnect = () => {
     try {
         const conn = mongoose.connect(process.env.MONGODB_URL);
