@@ -20,7 +20,7 @@ var blogSchema = new mongoose.Schema({
     },
     isLiked: {
         type: Boolean,
-        default: false
+        default: false,
     },
     isDisliked: {
         type: Boolean,
@@ -30,7 +30,7 @@ var blogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    disLikes: {
+    dislikes: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
@@ -40,7 +40,7 @@ var blogSchema = new mongoose.Schema({
     },
     author: {
         type: String,
-        default: "Admin"
+        default: "Admin",
     }
 }, {
     toJSON: {
