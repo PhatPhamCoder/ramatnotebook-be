@@ -23,9 +23,7 @@ app.use("/api/user", authRouter);
 app.use("/api/product", productRouter);
 app.use("/api/blog", blogRouter);
 
-app.get("/api", (req, res) => {
-  res.json({ "users": ["userone", "usertwo"] })
-});
+
 app.use(notFound);
 app.use(errorHandler);
 

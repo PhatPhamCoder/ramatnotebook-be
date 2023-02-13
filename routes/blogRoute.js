@@ -1,8 +1,9 @@
 const express = require('express');
-const { createBlog, updateBlog, getBlog, getAllBlog, deleteBlog } = require('../config/blogController');
-
-const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const router = express.Router();
+const { createBlog, updateBlog, getBlog,
+    getAllBlog, deleteBlog
+} = require('../controller/blogController');
+const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 
 router.post('/', authMiddleware, isAdmin, createBlog);
 router.put('/:id', authMiddleware, isAdmin, updateBlog);
