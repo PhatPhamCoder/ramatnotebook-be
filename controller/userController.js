@@ -1,7 +1,7 @@
 const User = require("../models/userModel");
 const asyncHandler = require('express-async-handler');
 const { generateToken } = require("../config/jwtToken");
-const { validateMongoDbId } = require("../utils/validateMongodbId");
+const validateMongoDbId = require("../utils/validateMongodbId");
 const { generateRefreshToken } = require("../config/refreshToken");
 const crypto = require('crypto');
 const jwt = require("jsonwebtoken");
@@ -128,15 +128,14 @@ const logout = asyncHandler(async (req, res) => {
 // Update A User
 
 const updatedUser = asyncHandler(async (req, res) => {
-    console.log()
     const { _id } = req.user;
     validateMongoDbId(_id);
     try {
         const updatedUser = await User.findByIdAndUpdate(_id, {
-            firstname: req?.body.firstname,
-            lastname: req?.body.lastname,
-            email: req?.body.email,
-            mobile: req?.body.mobile
+            firstname: req?.body?.firstname,
+            lastname: req?.body?.lastname,
+            email: req?.body?.email,
+            mobile: req?.body?.mobile
         }, {
             new: true,
         });
@@ -145,6 +144,27 @@ const updatedUser = asyncHandler(async (req, res) => {
         throw new Error(error);
     }
 });
+
+// save user Address
+
+const saveAddress = asyncHandler(async (req, res) => {
+    const { _id } = req.user;
+    validateMongoDbId(_id);
+    try {
+        const updatedUser = await User.findByIdAndUpdate(
+            _id,
+            {
+                address: req?.body?.address,
+            },
+            {
+                new: true,
+            }
+        );
+        res.json(updatedUser);
+    } catch (error) {
+        throw new Error(error);
+    }
+})
 
 // Get All User
 
@@ -273,6 +293,16 @@ const resetpassword = asyncHandler(async (req, res) => {
     res.json(user);
 });
 
+const getWishlist = asyncHandler(async (req, res) => {
+    const { _id } = req.user;
+    try {
+        const findUser = await User.findById(_id).populate("wishlist");
+        res.json(findUser)
+    } catch (error) {
+        throw new Error(error);
+    }
+});
+
 module.exports = {
     createUser, loginUser,
     getAllUser, getaUser,
@@ -280,5 +310,6 @@ module.exports = {
     blockUser, unLockUser,
     handleRefreshToken, logout,
     updatePassword, forgotPasswordToken,
-    resetpassword, loginAdmin
+    resetpassword, loginAdmin,
+    getWishlist, saveAddress
 }

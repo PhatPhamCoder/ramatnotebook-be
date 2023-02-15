@@ -11,7 +11,7 @@ router.post("/", authMiddleware, isAdmin, createBlog);
 router.put("/likes", authMiddleware, liketheBlog);
 router.put("/dislikes", authMiddleware, disliketheBlog);
 
-router.put("/upload/:id", authMiddleware, isAdmin, uploadPhoto.array('images', 2), blogImgResize, uploadImages)
+router.put("/upload/:id", authMiddleware, isAdmin, uploadPhoto.array('images', 2), blogImgResize, uploadImages);
 
 router.put("/:id", authMiddleware, isAdmin, updateBlog);
 router.get("/:id", getBlog);
