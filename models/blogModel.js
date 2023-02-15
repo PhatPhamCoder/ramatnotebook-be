@@ -34,23 +34,21 @@ var blogSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    image: {
-        type: String,
-        default: "https://www.hallaminternet.com/wp-content/uploads/2020/01/Is-blogging-relevant-anymore.jpeg"
-    },
+    images: [],
     author: {
         type: String,
         default: "Admin",
     }
-}, {
-    toJSON: {
-        virtuals: true
-    },
-    toObject: {
-        virtuals: true
-    },
-    timestamps: true
-});
+},
+    {
+        toJSON: {
+            virtuals: true
+        },
+        toObject: {
+            virtuals: true
+        },
+        timestamps: true
+    });
 
 //Export the model
 module.exports = mongoose.model('Blog', blogSchema);
