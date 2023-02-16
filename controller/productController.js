@@ -35,7 +35,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 });
 
 const deleteProduct = asyncHandler(async (req, res) => {
-    const id = res.params;
+    const id = req.params;
     validateMongoDbId(id);
     try {
         const deleteProduct = await Product.findOneAndDelete(id);
