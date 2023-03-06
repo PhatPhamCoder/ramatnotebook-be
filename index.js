@@ -1,32 +1,34 @@
-const bodyParser = require('body-parser');
-const express = require('express');
-const dbConnect = require('./config/dbConnect');
+const bodyParser = require("body-parser");
+const express = require("express");
+const dbConnect = require("./config/dbConnect");
 const app = express();
-require('dotenv').config();
-const { notFound, errorHandler } = require("./middlewares/errorHandler")
+require("dotenv").config();
+const { notFound, errorHandler } = require("./middlewares/errorHandler");
 const PORT = process.env.PORT || 4000;
-const authRouter = require('./routes/authRoute');
-const productRouter = require('./routes/productRoute');
-const blogRouter = require('./routes/blogRoute');
-const categoryRouter = require('./routes/prodcategoryRoute');
-const blogCatRouter = require('./routes/blogCatRoute');
-const brandRouter = require('./routes/brandRoute');
-const couponRouter = require('./routes/couponRoute');
-const colorRouter = require('./routes/colorRoute');
-const enqRouter = require('./routes/enqRoute');
-const uploadRouter = require('./routes/uploadRoute');
+const authRouter = require("./routes/authRoute");
+const productRouter = require("./routes/productRoute");
+const blogRouter = require("./routes/blogRoute");
+const categoryRouter = require("./routes/prodcategoryRoute");
+const blogCatRouter = require("./routes/blogCatRoute");
+const brandRouter = require("./routes/brandRoute");
+const couponRouter = require("./routes/couponRoute");
+const colorRouter = require("./routes/colorRoute");
+const enqRouter = require("./routes/enqRoute");
+const uploadRouter = require("./routes/uploadRoute");
 const cookieParser = require("cookie-parser");
-const morgan = require('morgan');
+const morgan = require("morgan");
 dbConnect();
-const cors = require('cors');
+const cors = require("cors");
 
 app.use(cors());
 
 app.use(morgan("dev"));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+app.use(
+  bodyParser.urlencoded({
+    extended: false,
+  })
+);
 app.use(cookieParser());
 
 app.use("/api/user", authRouter);
@@ -44,5 +46,5 @@ app.use(notFound);
 app.use(errorHandler);
 
 app.listen(PORT, () => {
-  console.log(`Server is running PORT ${PORT}`)
+  console.log(`Server is running PORT ${PORT}`);
 });

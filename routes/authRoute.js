@@ -1,15 +1,32 @@
-const express = require('express');
-const { createUser,
-    loginUser, getAllUser, getaUser,
-    deleteaUser, updatedUser, blockUser,
-    unLockUser, handleRefreshToken, logout,
-    updatePassword, forgotPasswordToken,
-    resetpassword, loginAdmin, getWishlist,
-    saveAddress, userCart, getUserCart,
-    emptyCart, applyCoupon, createOrder,
-    getOrders, updateOrderStatus, getAllOrders, getOrderByUserId
+const express = require("express");
+const {
+  createUser,
+  loginUser,
+  getAllUser,
+  getaUser,
+  deleteaUser,
+  updatedUser,
+  blockUser,
+  unLockUser,
+  handleRefreshToken,
+  logout,
+  updatePassword,
+  forgotPasswordToken,
+  resetpassword,
+  loginAdmin,
+  getWishlist,
+  saveAddress,
+  userCart,
+  getUserCart,
+  emptyCart,
+  applyCoupon,
+  createOrder,
+  getOrders,
+  updateOrderStatus,
+  getAllOrders,
+  getOrderByUserId,
 } = require("../controller/userController");
-const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
+const { authMiddleware, isAdmin } = require("../middlewares/authMiddleware");
 const router = express.Router();
 router.post("/register", createUser);
 router.post("/forgot-password-token", forgotPasswordToken);
