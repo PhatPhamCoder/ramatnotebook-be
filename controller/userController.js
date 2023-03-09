@@ -42,7 +42,7 @@ const loginUser = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -76,7 +76,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
@@ -150,7 +150,7 @@ const updatedUser = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.json(updatedUser);
   } catch (error) {
@@ -170,7 +170,7 @@ const saveAddress = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.json(updatedUser);
   } catch (error) {
@@ -227,7 +227,7 @@ const blockUser = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.json({
       message: "User Blocked",
@@ -248,7 +248,7 @@ const unLockUser = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.json({
       message: "User Unlocked",
@@ -362,7 +362,7 @@ const getUserCart = asyncHandler(async (req, res) => {
   validateMongoDbId(_id);
   try {
     const cart = await Cart.findOne({ orderby: _id }).populate(
-      "products.product"
+      "products.product",
     );
     res.json(cart);
   } catch (error) {
@@ -398,7 +398,7 @@ const applyCoupon = asyncHandler(async (req, res) => {
   await Cart.findOneAndUpdate(
     { orderby: user._id },
     { totalAfterDiscount },
-    { new: true }
+    { new: true },
   );
   res.json(totalAfterDiscount);
 });
@@ -502,7 +502,7 @@ const updateOrderStatus = asyncHandler(async (req, res) => {
       },
       {
         new: true,
-      }
+      },
     );
     res.json(updateOrderStatus);
   } catch (error) {
